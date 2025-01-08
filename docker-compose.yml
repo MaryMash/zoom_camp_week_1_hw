@@ -22,9 +22,14 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=root
     ports:
       - 8080:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
 
   script_runner:
     build: .
     depends_on:
       pgdatabase:
         condition: service_healthy
+
+volumes:
+  pgadmin_data:
